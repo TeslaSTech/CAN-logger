@@ -1,0 +1,17 @@
+Timestamp,EngineCoolantTemp,EngineRPM,VehicleSpeed,ThrottlePosition
+0.0,40.6 degC,14427.0 rpm,82.0 km/h,94.51 %
+0.33,178.6 degC,8643.0 rpm,36.0 km/h,2.35 %
+0.66,178.6 degC,4334.75 rpm,31.0 km/h,3.52 %
+1.0,92.6 degC,9661.25 rpm,19.0 km/h,10.98 %
+1.33,31.6 degC,4126.0 rpm,18.0 km/h,61.96 %
+1.66,172.6 degC,4368.0 rpm,107.0 km/h,19.6 %
+1.99,245.6 degC,14434.75 rpm,176.0 km/h,72.54 %
+2.33,43.6 degC,9845.25 rpm,178.0 km/h,32.54 %
+2.66,190.6 degC,2935.0 rpm,131.0 km/h,38.03 %
+3.0,96.6 degC,10087.0 rpm,114.0 km/h,51.76 %
+3.33,1.6 degC,2836.75 rpm,18.0 km/h,61.96 %
+3.66,211.6 degC,5727.5 rpm,50.0 km/h,81.17 %
+4.0,71.6 degC,14774.25 rpm,229.0 km/h,47.05 %
+4.33,13.6 degC,13592.25 rpm,123.0 km/h,23.13 %
+4.66,23.6 degC,6421.0 rpm,133.0 km/h,97.25 %
+4.99,149.6 degC,1419.75 rpm,212.0 km/h,81.56 %
