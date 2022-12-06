@@ -16,7 +16,7 @@ public class SerialReader {
 
     public void listPorts() {
         for (SerialPort port : ports) {
-            System.out.println(port.getDescriptivePortName());
+            System.out.println(port.getDescriptivePortName() + ": " + port.getPortDescription());
         }
     }
 
@@ -101,13 +101,13 @@ public class SerialReader {
                 input.close();
                 int correctSampleNumber = (timeEnd - timeStart) * pollFrequency * queries.length + queries.length;
 
-                System.out.println("[----------DIAGNOSTICS REPORT----------]");
+                /*System.out.println("[----------DIAGNOSTICS REPORT----------]");
                 System.out.printf("The system was %.2f s off target (%.2f seconds actual vs %.2f seconds theoretical).\n", lagTime, lagTime + (timeEnd-timeStart), (double) (timeEnd-timeStart));
                 System.out.printf("The system collected %d pieces of data whereas it should have collected %d.\n", collectedSamples, correctSampleNumber);
                 System.out.println("[-----Raw data-----]");
                 for (String[] data : responses) {
                     System.out.println(Arrays.toString(data));
-                }
+                }*/
 
                 List<String> csvCols = new ArrayList<>();
                 csvCols.add("Timestamp");

@@ -9,8 +9,9 @@ import java.util.Scanner;
 public class CSVTools {
     public static void writeToCSV(List<String[]> arrayIn, String[] queries, File targetFile) {
         try {
+
             // Set up writing to the file
-            FileWriter fw = new FileWriter(targetFile);
+            FileWriter fw = new FileWriter(targetFile, false);
 
             // set up header
             ArrayList<String> header = new ArrayList<>();
