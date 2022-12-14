@@ -39,7 +39,7 @@ public class Message implements MessageInterface {
         throw new NoPIDException("No such PID was found.", PID);
     }
 
-    public String convert(String in) throws NumberFormatException, NoPIDException {
+    public String convert(String in, boolean printPIDName) throws NumberFormatException, NoPIDException {
         ArrayList<String> bytes = new ArrayList<>();
         // Step 1: Removing excess whitespace
         in = in.replaceAll(" +", "");
@@ -90,7 +90,15 @@ public class Message implements MessageInterface {
 
         int value = (int) (s.getOffset() + s.getScale() * Integer.parseInt(data.toString(), 16) * 100);
 
-        return (value / 100.0) + " " + s.getUnit();
+        String ret = "";
+
+        if (printPIDName) {
+            ret += s.getName() + ": ";
+        }
+
+        ret += (value / 100.0) + " " + s.getUnit();
+
+        return ret;
     }
 
     public int getAddress() {

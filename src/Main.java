@@ -112,7 +112,7 @@ public class Main {
                 String[] current = new String[inputArray.get(i).length];
                 current[0] = inputArray.get(i)[0];
                 for (int j = 1; j < inputArray.get(i).length; j++) {
-                    current[j] = d.getKeys().get(0).convert(inputArray.get(i)[j]);
+                    current[j] = d.getKeys().get(0).convert(inputArray.get(i)[j], false);
                 }
                 inputArray.set(i, current);
             }
@@ -145,7 +145,7 @@ public class Main {
         do {
             try {
                 // TODO: Make this method call not so unnecessarily long
-                System.out.println(d.getKeys().get(0).convert(in));
+                System.out.println(d.getKeys().get(0).convert(in, true));
             } catch (NumberFormatException e) {
                 System.out.println("The data couldn't be interpreted correctly. Check the frame?");
             } catch (NoPIDException e) {

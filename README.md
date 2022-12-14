@@ -24,6 +24,7 @@ CAN-Opener works with the following:
 - Simulating communication with an ELM327 using the `elm-emulator` package, the program has a tendency to read all but the first and last frames more than once.
 - Especially on Linux, the jSerialComm library sometimes does not list virtual terminals. You will have to know them and manually type them in.
   - This is why the program does not check that the chosen serial port exists/does not exist.
+- You must enter a serial port that actually exists, due to the above. The program will not crash, it will just not collect data.
 
 ## Where to find documentation?
 
