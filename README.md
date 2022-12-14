@@ -1,6 +1,6 @@
 # CAN-Opener
 
-### Mode 01 OBD-II toolkit 
+### Mode 01 OBD-II toolkit <br> by Val Revankar
 
 ## About
 CAN-Opener is a small toolkit that makes interfacing with a car's On-Board Diagnostics port easy.<br>
