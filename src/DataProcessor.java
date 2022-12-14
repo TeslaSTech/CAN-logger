@@ -1,3 +1,6 @@
+import java.io.*;
+import java.util.ArrayList;
+
 /**
  * DBC data parser
  * @author Valmik Revankar
@@ -13,17 +16,13 @@
  *      - MultiplexOR signal (may need to sweep through once to find them?)
  *      - Multiplexed signals that are also MultiplexORs
  *      - The actual multiplexed signals
- * - SG_MUL_VAL = multiplexed signal
- * - CM_ = comment
- * - BA_ = enumeration (needs an accompanying VAL_ field)
- * -
+ * - SG_MUL_VAL = multiplexed signal (DIDN'T DO)
+ * - CM_ = comment (DIDN'T DO)
+ * - BA_ = enumeration (needs an accompanying VAL_ field) (DIDN'T DO)
  * </p>
  */
+public class DataProcessor implements DataProcessorInterface {
 
-import java.io.*;
-import java.util.ArrayList;
-
-public class DataProcessor {
 
     public static final String[] VERSION_DELIMS = new String[]{ "\"", "\"" };
     public static final String[] MESSAGE_DELIMS = new String[]{ "BO_ ", " ", ": ", " " };
@@ -33,6 +32,9 @@ public class DataProcessor {
     private BufferedReader br;
     private ArrayList<Message> keys;
 
+    /**
+     * Creates a new DataProcessor object. The file path is hardcoded to OBD2-DBC-MDF4/CSS-Electronics-OBD2-v1.4.dbc
+     */
     public DataProcessor() {
         try {
             fr = new FileReader("OBD2-DBC-MDF4/CSS-Electronics-OBD2-v1.4.dbc");

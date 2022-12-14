@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 
-public class Message {
+/**
+ * A Message block in a DBC file usually contains many Signals. (This is mirrored here).
+ * This uses the Java Library List, although the in-practice functionality is much more similar to a Dictionary ADT.
+ */
+public class Message implements MessageInterface {
 
     /* A DBC message declaration usually looks something like this:
      * BO_ 2024 OBD2: 8 Vector__XXX
@@ -95,10 +99,6 @@ public class Message {
 
     public String getProtocol() {
         return protocol;
-    }
-
-    public String getType() {
-        return "Message";
     }
 
     public String toString() {

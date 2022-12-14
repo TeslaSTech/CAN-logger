@@ -6,14 +6,23 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class SerialReader {
+/**
+ * Toolkit that utilizes the jSerialComm library to log data from an ELM327 OBD2-USB converter over an emulated RS-232.
+ */
+public class SerialReader implements SerialReaderInterface {
 
     SerialPort[] ports;
 
+    /**
+     * Creates a new SerialReader object and populates the ports array.
+     */
     public SerialReader() {
         this.ports = SerialPort.getCommPorts();
     }
 
+    /**
+     * Lists all available COM ports.
+     */
     public void listPorts() {
         for (SerialPort port : ports) {
             System.out.println(port.getDescriptivePortName() + ": " + port.getPortDescription());
@@ -128,57 +137,6 @@ public class SerialReader {
             return;
         }
 
-    }
-
-    /**
-     * Lightweight proof-of-concept serial terminal.
-     * @param targetPort The target serial port.
-     */
-    public void serialInterface(String targetPort) {
-        SerialPort comPort = SerialPort.getCommPort(targetPort);
-        Scanner in = new Scanner(System.in);
-
-        if (comPort.openPort()) {
-            InputStream input = comPort.getInputStream();
-            Scanner readIn = new Scanner(input).useDelimiter("\\r");
-            OutputStream output = comPort.getOutputStream();
-            List<String> lineLog = new ArrayList<>();
-
-            System.out.printf("Opened port %s at %d baud.\n", comPort.getDescriptivePortName(), comPort.getBaudRate());
-            comPort.setComPortParameters(9600, Byte.SIZE, SerialPort.ONE_STOP_BIT, SerialPort.NO_PARITY);
-            comPort.addDataListener(new SerialPortDataListener() {
-                @Override
-                public int getListeningEvents() { return SerialPort.LISTENING_EVENT_DATA_AVAILABLE; }
-                @Override
-                public void serialEvent(SerialPortEvent event)
-                {
-                    if (event.getEventType() != SerialPort.LISTENING_EVENT_DATA_AVAILABLE)
-                        return;
-
-                    byte[] newData = new byte[comPort.bytesAvailable()];
-                    int numRead = comPort.readBytes(newData, newData.length);
-                    //System.out.println("Read " + numRead + " bytes.");
-                    //comPort.writeBytes(newData, newData.length);
-                    for (byte b : newData) {
-                        System.out.print((char) b);
-                    }
-                }
-            });
-
-            try {
-                while (true) {
-                    if (System.in.available() > 0) {
-                        String toSend = in.nextLine() + "\r";
-                        output.write(toSend.getBytes());
-                    }
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-        } else {
-            System.out.println("Could not open COM port.");
-        }
     }
 
 }

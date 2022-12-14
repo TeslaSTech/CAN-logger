@@ -1,6 +1,5 @@
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -10,45 +9,40 @@ public class Main {
 
     public static void main(String[] args) {
 
-        boolean exit = false;
-
         do {
             // Print menu
             System.out.println("/------------------\\");
             System.out.println("| CAN-Opener v0.1b |");
             System.out.println("\\------------------/\n");
-            System.out.println("Choose something to do:");
-            System.out.println("1. Read data from an ELM327 device and save it to CSV");
-            System.out.println("2. Read in a raw CSV log file and convert it to spreadsheet data");
-            System.out.println("3. Interactive mode (enter frame, get conversion)");
-            System.out.println("4. Quit");
 
             boolean exitMenu = true;
             do {
+                System.out.println("Choose something to do:");
+                System.out.println("1. Read data from an ELM327 device and save it to CSV");
+                System.out.println("2. Read in a raw CSV log file and convert it to spreadsheet data");
+                System.out.println("3. Interactive mode (enter frame, get conversion)");
+                System.out.println("4. Quit");
                 System.out.print("Make a choice: ");
                 char choice = s.next().charAt(0);
 
                 switch (choice) {
-                    case '1':
+                    case '1' ->
                         // Case 1: Read data from ELM → CSV
                         logValues();
-                        break;
-                    case '2':
+                    case '2' ->
                         // Case 2: Read data from CSV → Readable CSV
                         readFromFile();
-                        break;
-                    case '3':
+                    case '3' ->
                         // Case 3: Interactive mode
                         interactive();
-                        break;
-                    case '4':
+                    case '4' -> {
                         System.out.println("Thank you for using this program!");
                         System.exit(0);
-                        break;
-                    default:
+                    }
+                    default -> {
                         exitMenu = false;
                         System.out.println("That choice didn't appear to be valid.");
-                        continue;
+                    }
                 }
             } while (!exitMenu);
         } while (true);
@@ -127,10 +121,6 @@ public class Main {
         }
 
         String[] queries = inputArray.remove(0);
-        /*System.out.println(Arrays.toString(queries));
-        for (String[] s : inputArray) {
-            System.out.println(Arrays.toString(s));
-        }*/
 
         CSVTools.writeToCSV(inputArray, queries, new File(filePathOut));
 
@@ -144,6 +134,8 @@ public class Main {
     }
 
     public static void interactive() {
+
+        // Set up a DataProcessor object for decoding, and a Scanner to take in user input
         DataProcessor d = new DataProcessor();
         Scanner s = new Scanner(System.in);
         // String exampleData = "41 05 87";
@@ -152,6 +144,7 @@ public class Main {
 
         do {
             try {
+                // TODO: Make this method call not so unnecessarily long
                 System.out.println(d.getKeys().get(0).convert(in));
             } catch (NumberFormatException e) {
                 System.out.println("The data couldn't be interpreted correctly. Check the frame?");
@@ -164,11 +157,12 @@ public class Main {
 
             System.out.print("Enter CAN frame (\"exit\" to return to menu): ");
             in = s.nextLine();
-        } while (!in.toLowerCase().equals("exit"));
+        } while (!in.equalsIgnoreCase("exit"));
 
     }
 
     public static void clearScreen() {
+        // This does not work last I checked. It uses ANSI escape codes to clear the screen and reset the cursor's position.
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }

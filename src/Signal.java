@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 
-public class Signal {
+/**
+ * A Java representation of one Mode 01 OBD signal and everything someone might need to know about it.
+ * Usually represented by one line in a DBC table.
+ */
+public class Signal implements SignalInterface {
     // breaks down the string into name, multiplex information, bit start, length, endian/sign together, scale, offset, min, max, unit
 
     private String PID; // will be stored as hex String
@@ -34,7 +38,7 @@ public class Signal {
             indexOffset = 1;
         }
 
-        // Step 2: Parse everything else in order)
+        // Step 2: Parse everything else in order
         bitStart = Integer.parseInt(info.get(1 + indexOffset));
         length = Integer.parseInt(info.get(2 + indexOffset));
         endian = info.get(3 + indexOffset).charAt(0) == '0';
@@ -49,10 +53,7 @@ public class Signal {
             unit = "";
     }
 
-    public String getType() {
-        return "Signal";
-    }
-
+    @Override
     public String toString() {
         String endianString;
         String signString;

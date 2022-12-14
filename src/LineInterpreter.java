@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 
-public class LineInterpreter {
+/**
+ * A toolkit to split lines into arrays, where the delimiter changes in a set pattern after every field.
+ * This is important with DBC files because characters that are delimiters in some fields are crucial in other fields.
+ */
+public class LineInterpreter implements LineInterpreterInterface {
 
     private final boolean debug = false;
 
