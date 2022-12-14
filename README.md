@@ -35,6 +35,12 @@ You will need to set up com0com, which creates virtual serial port pairs. Withou
 It also helps to run it from PowerShell, or the command line, since it will log any issues to the console.
 **<br>com0com WILL NOT WORK if Secure Boot is enabled. Proceed with caution, and know the risks of disabling Secure Boot.**
 
+## Run configuration
+
+This project contains the jSerialComm library, managed by the Maven build system. The JAR is in the `lib/` directory. 
+Make sure to include that directory in the classpath when running the file!
+I set my working directory to the project root (`.../CAN-logger/`) so that CSVs made in the program do not save in the `src/` folder.
+
 ## I want to add functionality/contribute to this project!
 
 Create a pull request! There is lots to do. TODOs are scattered aplenty.
